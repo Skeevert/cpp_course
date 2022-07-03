@@ -1,7 +1,7 @@
 #include "lib.h"
 
-#include "version.h"
+#include "build.h"
 
-int version() {
-    return PROJECT_VERSION_PATCH;
+int buildNumber() {
+    return BUILD_NUMBER;
 }

@@ -12,7 +12,6 @@ jobs:
       - uses: actions/checkout@v2
         with:
           submodules: true
-      - run: sudo apt-get update && sudo apt-get install libboost-test-dev -y
       - run: cmake 01_ci_cd -DBUILD_NUMBER=${{ github.run_number }}
       - run: cmake --build .
       - run: cmake --build . --target test

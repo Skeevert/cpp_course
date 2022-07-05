@@ -1,5 +1,4 @@
 #include "lib.h"
-
 #include "build.h"
 
 int buildNumber() {

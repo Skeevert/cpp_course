@@ -16,9 +16,9 @@ jobs:
           submodules: true
       - run: sudo apt-get update && sudo apt-get install libboost-test-dev -y
       - run: cmake 01_ci_cd -DBUILD_NUMBER=${{ github.run_number }}
-      - run: cmake --build 01_ci_cd
-      - run: cmake --build 01_ci_cd --target test
-      - run: cmake --build 01_ci_cd target package
+      - run: cmake --build .
+      - run: cmake --build . --target test
+      - run: cmake --build . target package
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1

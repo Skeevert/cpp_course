@@ -1,9 +1,11 @@
 cmake_minimum_required(VERSION 3.2)
 
+set(PROJECT_VERSION 1.0.0)
 project(ip_filter VERSION ${PROJECT_VERSION})
 
 include(FetchContent)
 
+set(INSTALL_GTEST OFF)
 FetchContent_Declare(
     googletest
     GIT_REPOSITORY  https://github.com/google/googletest.git

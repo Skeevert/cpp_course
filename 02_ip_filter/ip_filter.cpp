@@ -33,11 +33,10 @@ int main(int argc, char const *argv[])
     try
     {
         std::vector<IpAddress> ips;
-        std::regex ipRegex ("(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})");
 
         for(std::string line; std::getline(std::cin, line);)
         {
-            ips.emplace_back(parseIp(line), ipRegex);
+            ips.emplace_back(parseIp(line));
         }
 
         // reverse lexicographically sort

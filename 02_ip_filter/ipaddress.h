@@ -11,13 +11,13 @@ private:
     std::array<uint8_t, 4>  m_ip;
     std::string m_ipString;
 public:
-    IpAddress(const std::string &ip, const std::regex &re);
+    IpAddress(const std::string &ip);
     IpAddress(const IpAddress &other);
     IpAddress(IpAddress &&other);
     IpAddress& operator=(const IpAddress &other);
     IpAddress& operator=(IpAddress &&other);
     
-    bool parse();
+    static std::regex &getIpRegex();
 
     std::string_view ipView()const;
     bool checkByte(uint8_t value, size_t i) const;

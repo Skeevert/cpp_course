@@ -1,10 +1,11 @@
 #include "ipaddress.h"
-#include <iostream>
+#include <stdexcept>
 
-IpAddress::IpAddress(const std::string &ip, const std::regex &re) :
+IpAddress::IpAddress(const std::string &ip) :
     m_ipString(ip)
 {
     std::smatch sm;
+    const std::regex &re = getIpRegex();
     regex_match(m_ipString, sm, re);
 
     if (sm.size() - 1 != 4) {
@@ -47,6 +48,13 @@ IpAddress& IpAddress::operator=(IpAddress &&other)
     m_ipString = std::move(other.m_ipString);
     return *this;
 
+}
+
+std::regex &IpAddress::getIpRegex()
+{
+    static std::regex re ("(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})");
+
+    return re;
 }
 
 std::string_view IpAddress::ipView() const

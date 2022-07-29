@@ -9,10 +9,9 @@
 struct IpAddress {
 private:
     std::array<uint8_t, 4>  m_ip;
-    std::regex m_ipRegex;
     std::string m_ipString;
 public:
-    IpAddress(const std::string &ip);
+    IpAddress(const std::string &ip, const std::regex &re);
     IpAddress(const IpAddress &other);
     IpAddress(IpAddress &&other);
     IpAddress& operator=(const IpAddress &other);

@@ -1,12 +1,11 @@
 #include "ipaddress.h"
 #include <iostream>
 
-IpAddress::IpAddress(const std::string &ip) :
-    m_ipRegex(std::regex("(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})")),
+IpAddress::IpAddress(const std::string &ip, const std::regex &re) :
     m_ipString(ip)
 {
     std::smatch sm;
-    regex_match(m_ipString, sm, m_ipRegex);
+    regex_match(m_ipString, sm, re);
 
     if (sm.size() - 1 != 4) {
         throw std::runtime_error("Malformed ip (ip does not have exactly 4 bytes)");
@@ -25,14 +24,12 @@ IpAddress::IpAddress(const std::string &ip) :
 
 IpAddress::IpAddress(const IpAddress &other) :
     m_ip(other.m_ip),
-    m_ipRegex(other.m_ipRegex),
     m_ipString(other.m_ipString)
 {
 }
 
 IpAddress::IpAddress(IpAddress &&other) :
     m_ip(std::move(other.m_ip)),
-    m_ipRegex(std::move(other.m_ipRegex)),
     m_ipString(std::move(other.m_ipString))
 {
 }
@@ -40,7 +37,6 @@ IpAddress::IpAddress(IpAddress &&other) :
 IpAddress& IpAddress::operator=(const IpAddress &other)
 {
     m_ip = other.m_ip;
-    m_ipRegex = other.m_ipRegex;
     m_ipString = other.m_ipString;
     return *this;
 }
@@ -48,7 +44,6 @@ IpAddress& IpAddress::operator=(const IpAddress &other)
 IpAddress& IpAddress::operator=(IpAddress &&other)
 {
     m_ip = std::move(other.m_ip);
-    m_ipRegex = std::move(other.m_ipRegex);
     m_ipString = std::move(other.m_ipString);
     return *this;
 

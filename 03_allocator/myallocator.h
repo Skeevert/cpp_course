@@ -30,8 +30,6 @@ struct MyAllocator {
     }
 
     T* allocate(std::size_t n) {
-        std::size_t iter = 0;
-
         if (n + m_offset > SIZE) {
             throw std::bad_alloc();
         }
@@ -39,7 +37,7 @@ struct MyAllocator {
         return m_buffer + m_offset++;
     }
 
-    void deallocate (T* p, std::size_t ) {
+    void deallocate (T*, std::size_t ) {
     }
 
     MyAllocator(const MyAllocator &other) = delete;
